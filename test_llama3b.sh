@@ -22,10 +22,10 @@ python evaluate_model.py \
     --max_samples 5 \
     --source_lang "eng_Latn" \
     --target_langs "spa_Latn" "fra_Latn" "deu_Latn" "ita_Latn" "por_Latn" \
-    --output "results_llama3b.json" \
+    --output "results/results_llama3b.json" \
     --use_hf_dataset \
     --save_data_locally \
     --data_format "json"
 
-echo "Evaluation completed! Results saved to results_llama3b.json"
+echo "Evaluation completed! Results saved to results/results_llama3b.json"
 #echo "FLORES+ data saved locally in data/devtest/ directory" 

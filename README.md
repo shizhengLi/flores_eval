@@ -37,8 +37,9 @@ chmod +x setup_environment.sh
 这个脚本会自动：
 - 克隆FLORES和fairseq仓库
 - 安装fairseq（nllb分支）
+- 下载FLORES+数据集
 
-### 3. 下载FLORES+数据集
+### 3. 下载FLORES+数据集 (可跳过，上面已经下载过)
 
 ```bash
 # 快速下载数据
@@ -54,8 +55,17 @@ python download_flores_data.py --data_dir "data" --splits "dev" "devtest" --form
 
 ```bash
 
-python evaluate_model.py --model_name "meta-llama/Llama-3.2-3B" --model_type causal --max_samples 5 --source_lang "eng_Latn" --target_langs "spa_Latn" --output "test_results.json" --use_hf_dataset --save_data_locally --data_format json
+python evaluate_model.py --model_name "meta-llama/Llama-3.2-3B" --model_type causal --max_samples 5 --source_lang "eng_Latn" --target_langs "spa_Latn" --output "results/test_results.json" --use_hf_dataset --save_data_locally --data_format json
 ```
+
+```bash
+./test_llama3b.sh
+```
+
+#### 请注意：
+- 输出都放在results目录下
+- 脚本最好放在script目录下
+_ 这样不会push到github仓库
 
 
 ### 方法1：使用通用评估脚本
