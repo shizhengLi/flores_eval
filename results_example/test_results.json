@@ -1,0 +1,32 @@
+{
+  "model_name": "meta-llama/Llama-3.2-3B",
+  "model_type": "causal",
+  "split": "devtest",
+  "source_lang": "eng_Latn",
+  "target_langs": [
+    "spa_Latn"
+  ],
+  "languages": {
+    "eng_Latn_spa_Latn": {
+      "bleu": 17.639769856462934,
+      "num_samples": 5,
+      "generation_time": 20.5025315284729,
+      "avg_time_per_sample": 4.10050630569458,
+      "translations": [
+        "\"Ahora tenemos ratones de 4 meses de edad que no son diabéticos que eran diabéticos\".",
+        "Dr. Ehud Ur, professor of medicine at Dalhousie University in Halifax, Nova Scotia and chair of the clinical and scientific division of the Canadian Diabetes Association cautioned that the research is still in its early days.",
+        "Like some other experts, he is skeptical about whether diabetes can be cured, noting that these findings have no relevance to people who already have Type 1 diabetes.",
+        "On Monday, Sara Danius, permanent secretary of the Nobel Committee for Literature at the Swedish Academy, publicly announced during a radio program on Sveriges Radio in Sweden the committee, unable to reach Bob Dylan directly about winning the 2016 Nobel Prize in Literature, had abandoned its efforts to reach him.",
+        "Danius said, \"Right now we are doing nothing. I have called and sent emails to his closest collaborator and received very friendly replies. For now, that is certainly enough.\""
+      ]
+    }
+  },
+  "overall": {
+    "avg_bleu": 17.639769856462934,
+    "std_bleu": 0.0,
+    "min_bleu": 17.639769856462934,
+    "max_bleu": 17.639769856462934,
+    "total_time": 20.50520944595337,
+    "num_language_pairs": 1
+  }
+}

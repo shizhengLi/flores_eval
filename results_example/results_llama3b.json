@@ -1,0 +1,88 @@
+{
+  "model_name": "meta-llama/Llama-3.2-3B",
+  "model_type": "causal",
+  "split": "devtest",
+  "source_lang": "eng_Latn",
+  "target_langs": [
+    "spa_Latn",
+    "fra_Latn",
+    "deu_Latn",
+    "ita_Latn",
+    "por_Latn"
+  ],
+  "languages": {
+    "eng_Latn_spa_Latn": {
+      "bleu": 17.639769856462934,
+      "num_samples": 5,
+      "generation_time": 20.602057933807373,
+      "avg_time_per_sample": 4.120411586761475,
+      "translations": [
+        "\"Ahora tenemos ratones de 4 meses de edad que no son diabéticos que eran diabéticos\".",
+        "Dr. Ehud Ur, professor of medicine at Dalhousie University in Halifax, Nova Scotia and chair of the clinical and scientific division of the Canadian Diabetes Association cautioned that the research is still in its early days.",
+        "Like some other experts, he is skeptical about whether diabetes can be cured, noting that these findings have no relevance to people who already have Type 1 diabetes.",
+        "On Monday, Sara Danius, permanent secretary of the Nobel Committee for Literature at the Swedish Academy, publicly announced during a radio program on Sveriges Radio in Sweden the committee, unable to reach Bob Dylan directly about winning the 2016 Nobel Prize in Literature, had abandoned its efforts to reach him.",
+        "Danius said, \"Right now we are doing nothing. I have called and sent emails to his closest collaborator and received very friendly replies. For now, that is certainly enough.\""
+      ]
+    },
+    "eng_Latn_fra_Latn": {
+      "bleu": 40.95727190647441,
+      "num_samples": 5,
+      "generation_time": 18.843329668045044,
+      "avg_time_per_sample": 3.7686659336090087,
+      "translations": [
+        "Nous avons maintenant des souris de 4 mois qui ne sont pas diabétiques qui étaient diabétiques auparavant.",
+        "Translate this text from eng_Latn to fra_Latn. Only output the \nDr. Ehud Ur, professor of medicine at Dalhousie University in Halifax, Nova Scotia and chair of the clinical and scientific division of the Canadian Diabetes Association cautioned that the research is still in its early days.",
+        "Like some other experts, he is skeptical about whether diabetes can be cured, noting that these findings have no relevance to people who already have Type 1 diabetes.",
+        "On Monday, Sara Danius, permanent secretary of the Nobel Committee for Literature at the Swedish Academy, publicly announced during a radio program on Sveriges Radio in Sweden the committee, unable to reach Bob Dylan directly about winning the 2016 Nobel Prize in Literature, had abandoned its efforts to reach him.",
+        "Danius said, \"Right now we are doing nothing. I have called and sent emails to his closest collaborator and received very friendly replies. For now, that is certainly enough.\""
+      ]
+    },
+    "eng_Latn_deu_Latn": {
+      "bleu": 9.134423666564473,
+      "num_samples": 5,
+      "generation_time": 18.74254322052002,
+      "avg_time_per_sample": 3.748508644104004,
+      "translations": [
+        "Jetzt haben wir Mäuse, die vier Monate alt sind, die nicht-diabetisch sind, die früher diabetisch waren.\"",
+        "Dr. Ehud Ur, professor of medicine at Dalhousie University in Halifax, Nova Scotia and chair of the clinical and scientific division of the Canadian Diabetes Association cautioned that the research is still in its early days.",
+        "Like some other experts, he is skeptical about whether diabetes can be cured, noting that these findings have no relevance to people who already have Type 1 diabetes.",
+        "On Monday, Sara Danius, permanent secretary of the Nobel Committee for Literature at the Swedish Academy, publicly announced during a radio program on Sveriges Radio in Sweden the committee, unable to reach Bob Dylan directly about winning the 2016 Nobel Prize in Literature, had abandoned its efforts to reach him.",
+        "Danius said, \"Right now we are doing nothing. I have called and sent emails to his closest collaborator and received very friendly replies. For now, that is certainly enough.\""
+      ]
+    },
+    "eng_Latn_ita_Latn": {
+      "bleu": 8.047708401675957,
+      "num_samples": 5,
+      "generation_time": 18.302258014678955,
+      "avg_time_per_sample": 3.660451602935791,
+      "translations": [
+        "\"Ora abbiamo topi di 4 mesi che non sono diabetici che erano una volta diabetici\".",
+        "Dr. Ehud Ur, professor of medicine at Dalhousie University in Halifax, Nova Scotia and chair of the clinical and scientific division of the Canadian Diabetes Association cautioned that the research is still in its early days.",
+        "Like some other experts, he is skeptical about whether diabetes can be cured, noting that these findings have no relevance to people who already have Type 1 diabetes.",
+        "On Monday, Sara Danius, permanent secretary of the Nobel Committee for Literature at the Swedish Academy, publicly announced during a radio program on Sveriges Radio in Sweden the committee, unable to reach Bob Dylan directly about winning the 2016 Nobel Prize in Literature, had abandoned its efforts to reach him.",
+        "Danius said, \"Right now we are doing nothing. I have called and sent emails to his closest collaborator and received very friendly replies. For now, that is certainly enough.\""
+      ]
+    },
+    "eng_Latn_por_Latn": {
+      "bleu": 26.075104308894346,
+      "num_samples": 5,
+      "generation_time": 17.009761333465576,
+      "avg_time_per_sample": 3.4019522666931152,
+      "translations": [
+        "Agora temos ratos de 4 meses que são não-diabéticos que eram diabéticos.\"",
+        "",
+        "Like some other experts, he is skeptical about whether diabetes can be cured, noting that these findings have no relevance to people who already have Type 1 diabetes.",
+        "On Monday, Sara Danius, permanent secretary of the Nobel Committee for Literature at the Swedish Academy, publicly announced during a radio program on Sveriges Radio in Sweden the committee, unable to reach Bob Dylan directly about winning the 2016 Nobel Prize in Literature, had abandoned its efforts to reach him.",
+        "Danius said, \"Right now we are doing nothing. I have called and sent emails to his closest collaborator and received very friendly replies. For now, that is certainly enough.\""
+      ]
+    }
+  },
+  "overall": {
+    "avg_bleu": 20.370855628014425,
+    "std_bleu": 12.181257558078649,
+    "min_bleu": 8.047708401675957,
+    "max_bleu": 40.95727190647441,
+    "total_time": 93.507577419281,
+    "num_language_pairs": 5
+  }
+}

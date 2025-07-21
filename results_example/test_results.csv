@@ -1,0 +1,2 @@
+language_pair,bleu,num_samples,generation_time,avg_time_per_sample
+eng_Latn_spa_Latn,17.639769856462934,5,20.5025315284729,4.10050630569458
