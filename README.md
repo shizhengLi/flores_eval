@@ -5,6 +5,14 @@
 
 ## 环境设置
 
+
+### 0. 克隆这个仓库：
+
+```bash
+git clone git@github.com:shizhengLi/flores_eval.git
+cd flores_eval
+```
+
 ### 1. 创建conda环境
 
 ```bash
@@ -259,4 +267,3 @@ What time is it?
 ### 自定义数据格式
 
 可以修改`download_flores_data.py`来支持其他数据格式。 
->>>>>>> Run llama 3.2 3b successfully.
