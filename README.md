@@ -118,12 +118,56 @@ python download_flores_data.py --list_languages
 python download_flores_data.py --splits "dev" "devtest" --formats "json" "csv" "txt"
 ```
 
+## 新增：PEFT模型评估
+
+现在支持评估使用PEFT（Parameter-Efficient Fine-Tuning）微调的模型，包括LoRA、Prefix Tuning、P-Tuning等方法。
+
+### 安装PEFT库
+
+```bash
+pip install peft
+```
+
+### 方法1：使用PEFT测试脚本
+
+```bash
+chmod +x script/test_peft_model.sh
+cd script
+
+# 基本用法（使用默认参数）
+./test_peft_model.sh "meta-llama/Llama-3.2-3B" "/path/to/peft/model"
+
+# 完整用法（指定所有参数）
+./test_peft_model.sh BASE_MODEL PEFT_MODEL_PATH MODEL_TYPE MAX_SAMPLES SOURCE_LANG "TARGET_LANGS"
+
+# 例如：评估LoRA微调模型
+用默认的merged即可
+# 例如：评估Prompt Tuning微调模型
+./test_peft_model.sh "meta-llama/Llama-3.2-3B" "/data/lishizheng/code/peft_study/open-instruct-peft/output_new/llama3b_20epoch_prompt_tuning_tok_128_lr_5e-4_math_seqlen_1024_verified" "causal" 5 "eng_Latn" "spa_Latn fra_Latn"
+```
+
+### 方法2：直接使用Python脚本
+
+```bash
+python evaluate_model.py \
+    --model_name "meta-llama/Llama-3.2-3B" \
+    --model_type "causal" \
+    --peft_model_path "/path/to/peft/model" \
+    --max_samples 5 \
+    --source_lang "eng_Latn" \
+    --target_langs "spa_Latn" "fra_Latn" \
+    --output "results/results_peft.json" \
+    --use_hf_dataset \
+    --save_data_locally
+```
+
 ## 参数说明
 
 ### 主要参数
 
 - `--model_name`: HuggingFace模型名称或本地模型路径
 - `--model_type`: 模型类型 ("causal" 或 "seq2seq")
+- `--peft_model_path`: PEFT模型路径（LoRA、Prefix Tuning等）
 - `--max_samples`: 最大测试样本数
 - `--source_lang`: 源语言代码
 - `--target_langs`: 目标语言代码列表

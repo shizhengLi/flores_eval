@@ -4,6 +4,7 @@ FLORES-200 Model Evaluation Script
 
 This script evaluates a language model on the FLORES-200 dataset.
 Supports both HuggingFace models and local models.
+Supports PEFT models (LoRA, Prefix Tuning, P-Tuning, etc.)
 """
 
 import os
@@ -30,6 +31,8 @@ from transformers import (
     pipeline,
     GenerationConfig
 )
+# 导入PEFT相关库
+from peft import PeftModel, PeftConfig, get_peft_model
 from datasets import load_dataset
 import sacrebleu
 from sacremoses import MosesTokenizer, MosesDetokenizer
@@ -54,7 +57,8 @@ class FLORESEvaluator:
         batch_size: int = 8,
         data_dir: str = "data",
         languages: Optional[List[str]] = None,
-        use_hf_dataset: bool = True
+        use_hf_dataset: bool = True,
+        peft_model_path: Optional[str] = None  # 新增PEFT模型路径参数
     ):
         """
         Initialize the FLORES evaluator
@@ -68,6 +72,7 @@ class FLORESEvaluator:
             data_dir: Directory containing FLORES data
             languages: List of language codes to evaluate (None for all)
             use_hf_dataset: Whether to use HuggingFace FLORES+ dataset
+            peft_model_path: Path to PEFT model (LoRA, Prefix Tuning, etc.)
         """
         self.model_name = model_name
         self.model_type = model_type
@@ -75,6 +80,7 @@ class FLORESEvaluator:
         self.batch_size = batch_size
         self.data_dir = Path(data_dir)
         self.use_hf_dataset = use_hf_dataset
+        self.peft_model_path = peft_model_path  # 保存PEFT模型路径
         
         # 设置设备
         if device == "auto":
@@ -95,10 +101,18 @@ class FLORESEvaluator:
         self.moses_detokenizer = MosesDetokenizer()
         
     def _load_model(self):
-        """加载模型和tokenizer"""
+        """加载模型和tokenizer，支持PEFT模型"""
         logger.info(f"Loading model: {self.model_name}")
         
         try:
+            # 加载tokenizer
+            self.tokenizer = AutoTokenizer.from_pretrained(self.model_name)
+            
+            # 设置pad token
+            if self.tokenizer.pad_token is None:
+                self.tokenizer.pad_token = self.tokenizer.eos_token
+            
+            # 加载基础模型
             if self.model_type == "seq2seq":
                 self.model = AutoModelForSeq2SeqLM.from_pretrained(
                     self.model_name,
@@ -112,11 +126,24 @@ class FLORESEvaluator:
                     device_map="auto" if self.device == "cuda" else None
                 )
             
-            self.tokenizer = AutoTokenizer.from_pretrained(self.model_name)
-            
-            # 设置pad token
-            if self.tokenizer.pad_token is None:
-                self.tokenizer.pad_token = self.tokenizer.eos_token
+            # 如果指定了PEFT模型路径，加载PEFT模型
+            if self.peft_model_path:
+                logger.info(f"Loading PEFT model from: {self.peft_model_path}")
+                try:
+                    # 加载PEFT配置
+                    peft_config = PeftConfig.from_pretrained(self.peft_model_path)
+                    logger.info(f"PEFT config loaded: {peft_config.peft_type}")
+                    
+                    # 加载PEFT模型
+                    self.model = PeftModel.from_pretrained(
+                        self.model, 
+                        self.peft_model_path,
+                        device_map="auto" if self.device == "cuda" else None
+                    )
+                    logger.info(f"Successfully loaded PEFT model: {peft_config.peft_type}")
+                except Exception as e:
+                    logger.error(f"Error loading PEFT model: {e}")
+                    raise
                 
             logger.info("Model loaded successfully")
             
@@ -607,6 +634,7 @@ def main():
     parser.add_argument("--use_hf_dataset", action="store_true", default=True, help="Use HuggingFace FLORES+ dataset")
     parser.add_argument("--save_data_locally", action="store_true", help="Save FLORES+ data locally")
     parser.add_argument("--data_format", type=str, default="json", choices=["json", "csv"], help="Local data format")
+    parser.add_argument("--peft_model_path", type=str, default=None, help="Path to PEFT model (LoRA, Prefix Tuning, etc.)")
     
     args = parser.parse_args()
     
@@ -618,7 +646,8 @@ def main():
         max_length=args.max_length,
         batch_size=args.batch_size,
         data_dir=args.data_dir,
-        use_hf_dataset=args.use_hf_dataset
+        use_hf_dataset=args.use_hf_dataset,
+        peft_model_path=args.peft_model_path
     )
     
     # 运行评估
